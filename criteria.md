@@ -55,10 +55,18 @@ whether you hit them:
 
 <!-- Your criterion. It must name a number. -->
 
-
+. The model's recall on `warning` is at least 0.65 on the held-out test split.
 
 **Why this target:**
 
+`warning` is only 17% of my data right now (6 of 36 reviews), so a
+   model that guesses `recommendation` every time would score 0.00 recall on
+   it while still looking about 72% accurate. I also found `warning` hard to
+   label consistently: a review like "Crispy roll and fresh ingredients, but
+   very sparse meat, for the price... Disappointing." has praise and a
+   negative ending together. Missing warnings means the model would label a
+   complaint as a recommendation, so a reader could be steered toward a place
+   the reviewer warned against.
 
 
 ---
