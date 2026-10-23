@@ -55,7 +55,7 @@ whether you hit them:
 
 <!-- Your criterion. It must name a number. -->
 
-. The model's recall on `warning` is at least 0.65 on the held-out test split.
+The model's recall on `warning` is at least 0.65 on the held-out test split.
 
 **Why this target:**
 
@@ -74,10 +74,18 @@ whether you hit them:
 ## 2.
 
 <!-- Your criterion. -->
-
+The model's recall on `neutral` is at least 0.50 on the held-out test split.
 
 
 **Why this target:**
+
+`neutral` is only 11% of my data right now (4 of 36 reviews), so
+   a model that guesses `recommendation` every time would score 0.00 recall on
+   it, and with so few examples the model may never learn the label. It is also
+   my vaguest label: "takes no side" has no quotable words to point at, and I
+   labeled rows like "I been coming here" differently on different passes. I
+   set the bar lower than for `warning` because it is the label I have the
+   least data for and it has the loosest definition of the two.
 
 
 
