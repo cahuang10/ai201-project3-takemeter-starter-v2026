@@ -142,12 +142,23 @@ My rule labels a review `recommendation` only when the reviewer
 ## 5.
 
 <!-- Your criterion. -->
+At most 13% of true `warning` reviews are predicted as `recommendation`
+  on the held-out test split. With about 8 true warnings, this means at
+  most 1 may be called `recommendation`.
+
 
 
 
 **Why this target:**
-
-
+A warning can look like a recommendation when the wording is
+  mixed. Row 6 says "Crispy roll and fresh ingredients," then "utterly
+  average... Disappointing." It praises the quality of the ingredients but
+  is overall negative because it ends on a bad note, so a model that
+  weighs the praise would call it `recommendation`. This is the error I
+  most want to limit, because it could steer a reader toward a place the
+  reviewer warned against. I allow one slip because one review is 12.5%
+  of a test split this small. I will recompute the count from my final
+  test split.
 
 ---
 
