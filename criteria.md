@@ -59,7 +59,7 @@ The model's recall on `warning` is at least 0.65 on the held-out test split.
 
 **Why this target:**
 
-`warning` is only 17% of my data right now (6 of 36 reviews), so a
+`Warning` is only 17% of my data right now (6 of 36 reviews), so a
    model that guesses `recommendation` every time would score 0.00 recall on
    it while still looking about 72% accurate. I also found `warning` hard to
    label consistently: a review like "Crispy roll and fresh ingredients, but
@@ -80,7 +80,7 @@ The model's recall on `neutral` is at least 0.50 on the held-out test split.
 **Why this target:**
 
 `neutral` is only 11% of my data right now (4 of 36 reviews), so
-  a model that guesses `recommendation` every time would score 0.00 recall on
+  A model that guesses `recommendation` every time would score 0.00 recall on
   it, and with so few examples the model may never learn the label. It is also
   my vaguest label: "takes no side" has no quotable words to point at, and I
   labeled rows like "I been coming here" differently on different passes. I
@@ -101,7 +101,7 @@ Overall accuracy on the held-out test split is at least 0.80, which is
 
 
 **Why this target:**
- the vast majority of my data is `recommendation`, so a model can
+ The vast majority of my data is `recommendation`, so a model can
   look strong just by labeling that class well. A test split of about 40
   reviews moves 2.5 points per review, so a gap under about 3 reviews could
   be luck. An 8-point margin is about 3 reviews, enough to say the model
@@ -118,10 +118,22 @@ Overall accuracy on the held-out test split is at least 0.80, which is
 ## 4.
 
 <!-- Your criterion. -->
+ At most 40% of true `neutral` reviews are predicted as `recommendation`
+  on the held-out test split. With about 4 true `neutral` reviews, this
+  means at most 1 may be called `recommendation`.
 
 
 
 **Why this target:**
+My rule labels a review `recommendation` only when the reviewer
+  says or shows they'd go back, but many reviewers do that without saying
+  "recommend", and many enthusiastic reviews never say it either. Row 16
+  ("I been coming here... Shall try it out..") sounds flat but shows repeat
+  visits, so I labeled it `recommendation`. Row 8 ("the peanut sauce is
+  deliciously thick and sweet") sounds enthusiastic but never says to go,
+  so I labeled it `neutral`. A model that reads tone would get both wrong:
+  it would call row 8 `recommendation` (the failure this criterion counts)
+  and row 16 `neutral`.
 
 
 
