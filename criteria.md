@@ -80,12 +80,12 @@ The model's recall on `neutral` is at least 0.50 on the held-out test split.
 **Why this target:**
 
 `neutral` is only 11% of my data right now (4 of 36 reviews), so
-   a model that guesses `recommendation` every time would score 0.00 recall on
-   it, and with so few examples the model may never learn the label. It is also
-   my vaguest label: "takes no side" has no quotable words to point at, and I
-   labeled rows like "I been coming here" differently on different passes. I
-   set the bar lower than for `warning` because it is the label I have the
-   least data for and it has the loosest definition of the two.
+  a model that guesses `recommendation` every time would score 0.00 recall on
+  it, and with so few examples the model may never learn the label. It is also
+  my vaguest label: "takes no side" has no quotable words to point at, and I
+  labeled rows like "I been coming here" differently on different passes. I
+  set the bar lower than for `warning` because it is the label I have the
+  least data for and it has the loosest definition of the two.
 
 
 
@@ -94,10 +94,22 @@ The model's recall on `neutral` is at least 0.50 on the held-out test split.
 ## 3.
 
 <!-- Your criterion. -->
+Overall accuracy on the held-out test split is at least 0.80, which is
+  8 points above the 72% I'd get by always guessing `recommendation` on
+  today's data.
 
 
 
 **Why this target:**
+ the vast majority of my data is `recommendation`, so a model can
+  look strong just by labeling that class well. A test split of about 40
+  reviews moves 2.5 points per review, so a gap under about 3 reviews could
+  be luck. An 8-point margin is about 3 reviews, enough to say the model
+  learned something beyond guessing. I will recompute the always-guess
+  baseline from my final label counts. If more `warning` and `neutral`
+  reviews lower it, I keep 0.80 and report the larger gap.
+
+
 
 
 
